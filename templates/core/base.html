@@ -1,19 +1,20 @@
 {% load static %}
 <!doctype html>
 <html lang="tr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MD Clone</title>
-        <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %} ">
-        <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
 </head>
 
 <body>
+    {% include 'core/messages.html' %}
     <!-- NAVBAR -->
-        {% include 'core/navbar.html' %}
+    {% include 'core/navbar.html' %}
     <!-- NAVBAR END -->
-
     <!-- HERO -->
     <div class="bg-warning border-bottom border-dark">
         <div class="container py-5">
