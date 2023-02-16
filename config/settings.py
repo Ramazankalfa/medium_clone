@@ -47,6 +47,8 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     'page',
+    'user_profile',
+    'blog',
 ]
 
 
