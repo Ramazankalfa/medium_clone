@@ -6,11 +6,16 @@ def login_view(request):
     if request.user.is_authenticated:
         messages.info(request, f'{request.user.username} daha önce login olmuşsunuz.')
         return redirect('home_view')
+
     context = dict()
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username , password)
+
+        if len(username) < 6 or len(password) < 6:
+              messages.success(request, f'Lütfen kullanıcı adınızı veya şifrenizi doğru giriniz. Kullanıcı adı ve şifreniz 6 karakterden küçük olmamalıdır.')
+              return redirect('user_profile:login_view')
+              
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
