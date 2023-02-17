@@ -41,7 +41,17 @@ def register_view(request):
         password = post_info.get('password')
         password_confirm = post_info.get('password_confirm')
         instagram = post_info.get('instagram')
-        print('*' * 30)
-        print(email,email_confirm,first_name,last_name,password,password_confirm,instagram)
-        print('*' * 30)
+
+        if len(first_name) < 3 or len(last_name) < 3 or len(email) < 3 or len(password) < 3:
+            messages.warning(request, "Bilgiler en az 3 karakterden oluşmalıdır...")
+            return redirect('user_profile:register_view')
+
+        if email != email_confirm:
+            messages.warning(request, "lütfen email bilgilerini doğru giriniz.")
+            return redirect('user_profile:register_view')
+
+        if password != password_confirm:
+            messages.warning(request, "Lütfen şifre bilgilerini doğru giriniz..")
+            return redirect('user_profile:register_view')
+
     return render(request, 'user_profile/register.html', context)
