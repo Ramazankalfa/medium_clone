@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
@@ -53,5 +54,15 @@ def register_view(request):
         if password != password_confirm:
             messages.warning(request, "Lütfen şifre bilgilerini doğru giriniz..")
             return redirect('user_profile:register_view')
+
+        user, created = User.objects.get_or_create(username=email)
+        if not created:
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                messages.success(request, "Daha önce kayıt olmuşsunuz.. Ana sayfaya yönlendiriliyorsunuz.")
+                login(request, user)
+                return redirect('home_view')
+            messages.warning(request, f'{email} adresi sistemde kayıtlı ama login olamadınız.. Login sayfasına yönlendiriliyorsunuz.')
+            return redirect('user_profile:login_view')
 
     return render(request, 'user_profile/register.html', context)
