@@ -18,6 +18,8 @@ def create_blog_post_view(request):
             tags = json.loads(form.cleaned_data.get('tag'))
             for item in tags:
                 tag_item, created = Tag.objects.get_or_create(title=item.get('value').lower())
+                tag_item.is_active = True
+                tag_item.save()
                 f.tag.add(tag_item)
             messages.success(request, " Blog postunuz başarıyla kaydedildi. ")
             return redirect('home_view')
