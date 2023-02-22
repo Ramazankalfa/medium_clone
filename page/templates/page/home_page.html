@@ -229,6 +229,9 @@
 <section class="container mt-5">
     <div class="row">
         <main class="col-sm-7">
+            {% for post in posts %}
+                {% include 'blog/components/post.html' %}
+            {% endfor %}
             <article class="row mb-3">
                 <div class="col-sm-8">
                     <div>
