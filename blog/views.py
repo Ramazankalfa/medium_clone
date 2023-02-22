@@ -7,4 +7,6 @@ def create_blog_post_view(request):
     context = dict(
         form = form
     )
+    if request.method == 'POST':
+        print(request.POST)
     return render(request, 'blog/create_blog_post.html', context)
