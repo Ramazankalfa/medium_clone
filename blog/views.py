@@ -5,7 +5,7 @@ from .models import Category, Tag, Post
 import json
 from django.contrib import messages
 
-login_required(login_url='user:login_view')
+@login_required(login_url='user:login_view')
 def create_blog_post_view(request):
     form=PostModelForm()
    
