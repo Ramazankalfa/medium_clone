@@ -4,12 +4,12 @@ from .models import Category, Tag, Post
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['pk', 'title', 'is_active']
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['pk', 'title', 'is_active']
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['pk', 'title', 'is_active', 'view_count']
